@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="nfc:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="nfc.war">
+      <element id="artifact" artifact-name="nfc:war exploded" />
+    </root>
+  </artifact>
+</component>

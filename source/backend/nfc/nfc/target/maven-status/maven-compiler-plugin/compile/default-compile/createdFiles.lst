@@ -1,0 +1,16 @@
+com/mbds/nfc/entities/Contact.class
+com/mbds/nfc/model/ContactsResponse.class
+com/mbds/nfc/web/controllers/BaseController.class
+com/mbds/nfc/web/controllers/HomeController.class
+com/mbds/nfc/entities/Role.class
+com/mbds/nfc/config/DBInitializer.class
+com/mbds/nfc/web/config/WebMvcConfig.class
+com/mbds/nfc/repositories/RoleRepository.class
+com/mbds/nfc/model/BaseResponse.class
+com/mbds/nfc/web/config/SpringWebAppInitializer.class
+com/mbds/nfc/config/AppConfig.class
+com/mbds/nfc/repositories/UserRepository.class
+com/mbds/nfc/services/UserService.class
+com/mbds/nfc/entities/User.class
+.netbeans_automatic_build
+com/mbds/nfc/web/rest/UserController.class

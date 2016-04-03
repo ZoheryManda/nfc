@@ -1,0 +1,17 @@
+/Users/macbook/Workspace/mbds/nfc/nfc/src/main/java/com/mbds/nfc/web/controllers/BaseController.java
+/Users/macbook/Workspace/mbds/nfc/nfc/src/main/java/com/mbds/nfc/model/ContactsResponse.java
+/Users/macbook/Workspace/mbds/nfc/nfc/src/main/java/com/mbds/nfc/repositories/UserRepository.java
+/Users/macbook/Workspace/mbds/nfc/nfc/src/main/java/com/mbds/nfc/model/BaseResponse.java
+/Users/macbook/Workspace/mbds/nfc/nfc/src/main/java/com/mbds/nfc/repositories/RoleRepository.java
+/Users/macbook/Workspace/mbds/nfc/nfc/src/main/java/com/mbds/nfc/services/UserService.java
+/Users/macbook/Workspace/mbds/nfc/nfc/src/main/java/com/mbds/nfc/config/AppConfig.java
+/Users/macbook/Workspace/mbds/nfc/nfc/src/main/java/com/mbds/nfc/web/config/WebMvcConfig.java
+/Users/macbook/Workspace/mbds/nfc/nfc/src/main/java/com/mbds/nfc/web/rest/UserController.java
+/Users/macbook/Workspace/mbds/nfc/nfc/src/main/java/com/mbds/nfc/config/DBInitializer.java
+/Users/macbook/Workspace/mbds/nfc/nfc/src/main/java/com/mbds/nfc/web/controllers/HomeController.java
+/Users/macbook/Workspace/mbds/nfc/nfc/src/main/java/com/mbds/nfc/web/config/SpringWebAppInitializer.java
+/Users/macbook/Workspace/mbds/nfc/nfc/src/main/java/com/mbds/nfc/entities/Contact.java
+/Users/macbook/Workspace/mbds/nfc/nfc/src/main/java/com/mbds/nfc/entities/Role.java
+/Users/macbook/Workspace/mbds/nfc/nfc/src/main/java/com/mbds/nfc/entities/User.java
+/Users/macbook/Workspace/mbds/nfc/nfc/src/main/java/com/mbds/nfc/repositories/ContactRepository.java
+/Users/macbook/Workspace/mbds/nfc/nfc/src/main/java/com/mbds/nfc/services/NotificationService.java
