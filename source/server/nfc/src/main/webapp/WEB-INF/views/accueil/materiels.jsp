@@ -81,7 +81,7 @@
                                                 <td>${mouvement.dateremise}</td>
                                                 <td>
                                                     <c:if test="${empty mouvement.dateremise}">
-                                                        <a class="btn btn-danger"
+                                                        <a class="btn btn-default"
                                                            href="/nfc/rest/admin//notifications/${mouvement.idutilisateur}/${mouvement.idmateriel}">
                                                             Notifier retard
                                                         </a>
