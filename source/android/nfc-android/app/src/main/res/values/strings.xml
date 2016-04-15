@@ -1,0 +1,107 @@
+<resources>
+    <string name="app_name">"Auction "</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Parametres</string>
+    <string name="login_label">Login</string>
+
+    <string name="nav_item_home">Accueil</string>
+    <string name="nav_historique">Historique</string>
+    <string name="nav_item_settings">Preferences</string>
+
+    <!-- Enregistrement -->
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Mot de passe</string>
+    <string name="hint_name">Pseudo</string>
+    <string name="btn_login">SE CONNECTER</string>
+    <string name="btn_register">S\'ENREGISTRER</string>
+    <string name="btn_link_to_register">Pas encore membre? S\'enregistrer maintenant.</string>
+    <string name="btn_link_to_login">Déjà membre? Se connecter.</string>
+    <string name="welcome">Welcome</string>
+    <string name="btn_logout">LOGOUT</string>
+    <string name="name">Fullname</string>
+    <string name="label_senregistrer">S\'enregistrer</string>
+
+    <style name="DefaultButtonText">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#979797</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:shadowColor">#f9f9f9</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="action_search">Rechercher</string>
+    <string name="drawer_open">Ouvrir</string>
+    <string name="drawer_close">Fermer</string>
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+        <item>@string/nav_historique</item>
+    </string-array>
+    
+    <string-array name="nav_drawer_icon">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_home</item>
+    </string-array>
+
+    <string-array name="nav_drawer_subtitle">
+        <item>Scaner un tag</item>
+        <item>Afficher l\'historique</item>
+    </string-array>
+
+
+    <string name="title_my_products">Mes produits</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Accueil</string>
+    <string name="title_setting">Preference</string>
+
+    <string name="title_activity_main_tab">Auction</string>
+
+
+    <string-array name="listArray">
+        <item>Headings</item>
+        <item>Headings and Details</item>
+        <item>All Data</item>
+    </string-array>
+
+    <string-array name="listValues">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string name="title_activity_preference">PreferenceActivity</string>
+
+    <!-- GCM -->
+    <string name="error_config">Please set the %1$s constant and recompile the app.</string>
+    <string name="already_registered">Device is already registered on server.</string>
+    <string name="gcm_registered">From GCM: device successfully registered!</string>
+    <string name="gcm_unregistered">From GCM: device successfully unregistered!</string>
+    <string name="gcm_message">From GCM: you got message!</string>
+    <string name="gcm_error">From GCM: error (%1$s).</string>
+    <string name="gcm_recoverable_error">From GCM: recoverable error (%1$s).</string>
+    <string name="gcm_deleted">From GCM: server deleted %1$d pending messages!</string>
+    <string name="server_registering">Trying (attempt %1$d/%2$d) to register device on Demo Server.</string>
+    <string name="server_registered">From Demo Server: successfully added device!</string>
+    <string name="server_unregistered">From Demo Server: successfully removed device!</string>
+    <string name="server_register_error">Could not register device on Demo Server after %1$d attempts.</string>
+    <string name="server_unregister_error">Could not unregister device on Demo Server (%1$s).</string>
+    <string name="options_register">Register</string>
+    <string name="options_unregister">Unregister</string>
+    <string name="options_clear">Clear</string>
+    <string name="options_exit">Exit</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logo">logo</string>
+
+</resources>

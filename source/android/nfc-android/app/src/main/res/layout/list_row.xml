@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_row_selector"
+    android:padding="8dp">
+
+    <RelativeLayout
+        android:id="@+id/layout_front"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/dateemprunt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:textSize="@dimen/title"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dateremise"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dateemprunt"
+            android:layout_marginTop="1dip"
+            android:textSize="@dimen/title"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/materiel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/dateremise"
+            android:textColor="@color/genre"
+            android:textSize="@dimen/title" />
+
+    </RelativeLayout>
+</RelativeLayout>
