@@ -1,14 +1,20 @@
 package com.mbds.nfc.web.controllers;
 
+import com.mbds.nfc.entities.Materiel;
 import com.mbds.nfc.entities.Mouvement;
-import com.mbds.nfc.services.MouvementService;
-import com.mbds.nfc.services.UserService;
+import com.mbds.nfc.entities.Typemateriel;
+import com.mbds.nfc.entities.Utilisateur;
+import com.mbds.nfc.model.Notification;
+import com.mbds.nfc.services.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +23,25 @@ import java.util.List;
 @RequestMapping(value = "/admin/")
 public class HomeController {
 
+    private static final Logger LOG = LoggerFactory.getLogger(HomeController.class);
+
     @Autowired
     private UserService userService;
 
     @Autowired
-    MouvementService mouvementService;
+    private MouvementService mouvementService;
+
+    @Autowired
+    private UtilisateurSevice utilisateurSevice;
+
+    @Autowired
+    private MaterielService materielService;
+
+    @Autowired
+    private TypematerielService typematerielService;
+
+    @Autowired
+    private GCMNotificationSender gcmNotificationSender;
 
     @RequestMapping(value = "/home/", method = RequestMethod.GET)
     public String index(ModelMap model) {
@@ -79,6 +99,27 @@ public class HomeController {
     public String listerEtudiant(ModelMap model){
         model.addAttribute("title", "Etudiants");
         return "accueil/etudiants";
+    }
+
+    @RequestMapping(value = "/notifications/{idUtilisateur}/{idMateriel}", method = RequestMethod.GET)
+    public String notifierRetard(@PathVariable("idUtilisateur") int idUtilisateur,
+                                 @PathVariable("idMateriel") int idMateriel) {
+        Utilisateur utilisateur = utilisateurSevice.findById(idUtilisateur);
+        Materiel materiel = materielService.findById(idMateriel);
+        Typemateriel typemateriel = typematerielService.findById(materiel.getIdtype());
+
+        String msg = String.format("Vous devez rendre le materiel %d de type %s au plus tot.", materiel.getIdmateriel(), typemateriel.getValeur());
+        String[] regids = {utilisateur.getRegid()};
+
+        Notification notification = new Notification();
+        notification.setTitle("Retard");
+        notification.setMessage(msg);
+        notification.setBadge(1);
+        notification.setRegistrationIdsToSend(regids);
+
+        LOG.trace("Sending notification {}", notification);
+        gcmNotificationSender.sendNotification(notification);
+        return "redirect:/rest/admin/historique/";
     }
 
     public enum Etat{

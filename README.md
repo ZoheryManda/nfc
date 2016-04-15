@@ -1,5 +1,8 @@
 # README #
 
+##ANDROID##
+
+
 This README would normally document whatever steps are necessary to get your application up and running.
 
 ### What is this repository for? ###
@@ -27,3 +30,5 @@ This README would normally document whatever steps are necessary to get your app
 
 * Repo owner or admin
 * Other community or team contact
+
+##SERVEUR##

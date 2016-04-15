@@ -60,13 +60,38 @@
                                     <h3 class="panel-title">Panel Title</h3>
                                 </div>
                                 <div class="panel-body">
-                                    Panel body
-                                    <ul>
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>ID/Matricule Etudiant</th>
+                                            <th>ID/SN Materiel</th>
+                                            <th>Date d'emprunt</th>
+                                            <th>Date de remise</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
                                         <c:forEach var="mouvement" items="${mouvements}">
-                                            <li>${mouvement.dateemprunt} | ${mouvement.dateremise}</li>
+                                            <tr>
+                                                <td>${mouvement.idmvt}</td>
+                                                <td>${mouvement.idutilisateur}</td>
+                                                <td>${mouvement.idmateriel}</td>
+                                                <td>${mouvement.dateemprunt}</td>
+                                                <td>${mouvement.dateremise}</td>
+                                                <td>
+                                                    <c:if test="${empty mouvement.dateremise}">
+                                                        <a class="btn btn-danger"
+                                                           href="/nfc/rest/admin//notifications/${mouvement.idutilisateur}/${mouvement.idmateriel}">
+                                                            Notifier retard
+                                                        </a>
+                                                    </c:if>
+                                                </td>
+                                            </tr>
                                         </c:forEach>
-                                    </ul>
 
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
 
