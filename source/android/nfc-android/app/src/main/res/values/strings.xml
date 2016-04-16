@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">"Auction "</string>
+    <string name="app_name">NFC</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Parametres</string>
@@ -37,7 +37,8 @@
     </style>
 
     <string name="title_activity_register">RegisterActivity</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Gestion Emprunt Materiel</string>
+    <string name="title">Gestion Emprunt Materiel</string>
 
     <string name="action_search">Rechercher</string>
     <string name="drawer_open">Ouvrir</string>

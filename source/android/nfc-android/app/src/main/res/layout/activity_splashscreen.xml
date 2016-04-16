@@ -5,18 +5,17 @@ android:layout_height="match_parent"
     android:background="#ffffffff">
 
 <ImageView
-    android:src="@mipmap/ic_launcher"
+    android:src="@drawable/splash"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:contentDescription="@string/logo"
-    android:layout_centerVertical="true"
-    android:layout_alignStart="@+id/progressBar1"
 
     android:adjustViewBounds="true"
     android:maxWidth="180dp"
     android:maxHeight="180dp"
     android:scaleType="fitCenter"
-    />
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true" />
 
 <ProgressBar
     android:id="@+id/progressBar1"

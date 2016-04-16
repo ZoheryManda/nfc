@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.mbds.nfc.R;
 import com.mbds.nfc.adapter.CustomListAdapter;
 import com.mbds.nfc.app.AppConfig;
@@ -41,6 +42,7 @@ import butterknife.ButterKnife;
 public class HistoriqueFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     private static final String TAG = HomeFragment.class.getSimpleName();
 
+    private String baseUrl = "";
 
     private CustomListAdapter adapter;
     private SessionManager session;
@@ -60,6 +62,8 @@ public class HistoriqueFragment extends Fragment implements SwipeRefreshLayout.O
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        baseUrl = "http://" + PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("wsurl", "") + "/nfc/rest";
         session = new SessionManager(getActivity().getApplicationContext());
 
         //Setting the list
@@ -80,7 +84,7 @@ public class HistoriqueFragment extends Fragment implements SwipeRefreshLayout.O
 
         // Creating volley request obj
         JsonArrayRequest mvtReq = new JsonArrayRequest(
-                AppConfig.BASE_URL + "/mouvements/utilisateur/" + utilisateur.getIdutilisateur(),
+                baseUrl + "/mouvements/utilisateur/" + utilisateur.getIdutilisateur(),
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {

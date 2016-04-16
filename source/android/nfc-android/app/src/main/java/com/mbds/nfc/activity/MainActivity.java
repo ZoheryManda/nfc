@@ -2,6 +2,7 @@ package com.mbds.nfc.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -17,17 +18,14 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.mbds.nfc.R;
 import com.mbds.nfc.app.AppConfig;
+import com.mbds.nfc.app.AppController;
 import com.mbds.nfc.helper.SessionManager;
 import com.mbds.nfc.util.GCMClientManager;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -38,6 +36,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
     private static final String TAG = MainActivity.class.getSimpleName();
     private SessionManager session;
     private FragmentDrawer drawerFragment;
+    private String baseUrl;
 
     private GCMClientManager pushClientManager;
 
@@ -49,6 +48,8 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        baseUrl = "http://" + PreferenceManager.getDefaultSharedPreferences(MainActivity.this).getString("wsurl", "") + "/nfc/rest";
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -126,23 +127,44 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
         }
     }
 
-    public void gcmRegistration(){
+    public void gcmRegistration() {
         pushClientManager = new GCMClientManager(this, AppConfig.SENDER_ID);
 
         pushClientManager.registerIfNeeded(new GCMClientManager.RegistrationCompletedHandler() {
             @Override
             public void onSuccess(String registrationId, boolean isNewRegistration) {
 
-                Toast.makeText(MainActivity.this, registrationId,
-
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, registrationId, Toast.LENGTH_SHORT).show();
                 Log.i(TAG, "registering device (regId = " + registrationId + ")");
+                String idUtilisateur = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).getString("matricule", "");
+                updateRegid(idUtilisateur, registrationId);
             }
+
             @Override
             public void onFailure(String ex) {
                 super.onFailure(ex);
             }
 
         });
+    }
+
+    public void updateRegid(String idUtilisateur, String regid) {
+        JsonObjectRequest objectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                baseUrl + "/utilisateurs/regid/" + idUtilisateur + "/" + regid,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+//                        Log.i(TAG, "registering device (regId = " + regid + ")");
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                }
+        );
+        AppController.getInstance().addToRequestQueue(objectRequest);
     }
 }

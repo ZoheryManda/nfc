@@ -5,9 +5,6 @@ import android.content.Intent;
 
 public final class CommonUtilities {
 
-    // give your server registration url here
-    public static final String SERVER_URL = "http://auctionserver-mandadomain.rhcloud.com/register/device";
-
     // Google project id
     public static final String SENDER_ID = "740300247704";
 

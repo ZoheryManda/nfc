@@ -2,8 +2,10 @@ package com.mbds.nfc.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -22,6 +24,9 @@ public class SplashscreenActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_splashscreen);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(SplashscreenActivity.this);
+        prefs.edit().putString("wsurl", "192.168.1.64:8080").commit();
 
         new Handler().postDelayed(new Runnable() {
             @Override

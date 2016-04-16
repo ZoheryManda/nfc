@@ -57,7 +57,13 @@
 
         <activity
             android:name=".activity.SplashscreenActivity"
-            android:label="Splash" />
+            android:label="@string/title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.RegisterActivity"
             android:label="@string/title_activity_register"
@@ -65,13 +71,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activity.MainActivity"
-            android:label="@string/title_activity_main">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />/>
-            </intent-filter>
-        </activity>
+            android:label="@string/title_activity_main"/>
         <activity
             android:name=".activity.SettingsActivity"
             android:label="@string/title_setting" />
@@ -92,7 +92,7 @@
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
 
-                <category android:name="com.mbds.auction" />
+                <category android:name="com.mbds.nfc" />
             </intent-filter>
         </receiver>
 

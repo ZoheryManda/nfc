@@ -18,7 +18,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.mbds.nfc.R;
-import com.mbds.nfc.app.AppConfig;
 import com.mbds.nfc.app.AppController;
 import com.mbds.nfc.helper.CustomPreferenceManager;
 import com.mbds.nfc.model.Materiel;
@@ -37,6 +36,8 @@ public class NFCActivity extends ActionBarActivity {
     public final static String MESSAGE = "message";
     public final static String UIID = "uiid";
 
+    private String baseUrl = "";
+
     // dtection de tag
     private NfcAdapter nfcAdapter = null;
     private PendingIntent mPendingIntent;
@@ -50,6 +51,7 @@ public class NFCActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc);
 
+        baseUrl = "http://" + PreferenceManager.getDefaultSharedPreferences(NFCActivity.this).getString("wsurl", "") + "/nfc/rest";
         nfcAdapter = NfcAdapter.getDefaultAdapter(getApplicationContext());
     }
 
@@ -68,7 +70,7 @@ public class NFCActivity extends ActionBarActivity {
 
         JsonObjectRequest objectRequest = new JsonObjectRequest(
                 Request.Method.POST,
-                AppConfig.BASE_URL + "/utilisateurs/login/",
+                baseUrl + "/utilisateurs/login/",
                 params,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -90,7 +92,7 @@ public class NFCActivity extends ActionBarActivity {
     private void getMateriel(String uiid) {
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(
                 Request.Method.GET,
-                AppConfig.BASE_URL + "/materiels/uiid/" + uiid,
+                baseUrl + "/materiels/uiid/" + uiid,
                 null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -140,7 +142,7 @@ public class NFCActivity extends ActionBarActivity {
 
         JsonObjectRequest objectRequest = new JsonObjectRequest(
                 Request.Method.POST,
-                AppConfig.BASE_URL + "/mouvements/materiel/",
+                baseUrl + "/mouvements/materiel/",
                 params,
                 new Response.Listener<JSONObject>() {
                     @Override

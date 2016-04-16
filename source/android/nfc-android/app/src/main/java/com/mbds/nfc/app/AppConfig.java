@@ -2,13 +2,13 @@ package com.mbds.nfc.app;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import com.mbds.nfc.activity.MainActivity;
 
 public class AppConfig {
     // Server user login url
-    public static String URL_LOGIN = "http://auctionserver-mandadomain.rhcloud.com/login";
-
-    public static final String URL_DEVICE_REGISTER = "http://auctionserver-mandadomain.rhcloud.com/register/device";
-
     // Server user register url
     public static String URL_REGISTER = "http://auctionserver-mandadomain.rhcloud.com/register";
 
@@ -18,7 +18,7 @@ public class AppConfig {
     public static final String SENDER_ID = "1097031827274";
 
     public static final String DISPLAY_MESSAGE_ACTION =
-            "com.manda.auction.DISPLAY_MESSAGE";
+            "com.mbds.nfc.DISPLAY_MESSAGE";
 
     public static final String EXTRA_MESSAGE = "message";
 
