@@ -21,4 +21,6 @@ public interface UtilisateurSevice {
     Utilisateur login(int id, String pwd);
 
     Utilisateur login(String nom, String pwd);
+
+    List<Utilisateur> listeEtudiants();
 }

@@ -52,4 +52,9 @@ public class UtilisateurSeviceImpl implements UtilisateurSevice {
     public Utilisateur login(String nom, String pwd) {
         return utilisateurRepository.findByNomAndPrenom(nom, pwd);
     }
+
+    @Override
+    public List<Utilisateur> listeEtudiants(){
+        return utilisateurRepository.findById(2);
+    }
 }

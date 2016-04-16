@@ -9,9 +9,6 @@ import com.mbds.nfc.services.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -50,6 +47,7 @@ public class HomeController {
         return "welcome";
     }
 
+    // Historique
     @RequestMapping(value = "/historique/", method = RequestMethod.GET)
     public String historique(ModelMap model){
         List<Mouvement> mouvements = mouvementService.findAll();
@@ -78,27 +76,23 @@ public class HomeController {
         return "accueil/historique";
     }
 
+    // Notifications
     @RequestMapping(value = "/notifications/", method = RequestMethod.GET)
     public String notifier(ModelMap model){
         model.addAttribute("title", "Notifications");
         return "accueil/notifications";
     }
 
+    // Materiels
     @RequestMapping(value = "/materiels/", method = RequestMethod.GET)
     public String listerMateriel(ModelMap model){
+        List<Materiel> materiels = materielService.findAll();
+        List<Typemateriel> typemateriels = typematerielService.findAll();
         model.addAttribute("title", "Materiels");
+        model.addAttribute("subtitle", "Liste des materiels");
+        model.addAttribute("materiels", materiels);
+        model.addAttribute("typemateriels", typemateriels);
         return "accueil/materiels";
-    }
-
-
-    public String listerMaterielEmprunt(){
-        return "";
-    }
-
-    @RequestMapping(value = "/etudiants/", method = RequestMethod.GET)
-    public String listerEtudiant(ModelMap model){
-        model.addAttribute("title", "Etudiants");
-        return "accueil/etudiants";
     }
 
     @RequestMapping(value = "/notifications/{idUtilisateur}/{idMateriel}", method = RequestMethod.GET)
@@ -121,6 +115,51 @@ public class HomeController {
         gcmNotificationSender.sendNotification(notification);
         return "redirect:/rest/admin/historique/";
     }
+
+    @RequestMapping(value = "/materiels/", method = RequestMethod.POST)
+    public String ajoutMateriel(@ModelAttribute Materiel materiel, ModelMap model){
+        try {
+            materielService.save(materiel);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/rest/admin/materiels/";
+    }
+
+    @RequestMapping(value = "/materiels/delete/{id}", method = RequestMethod.GET)
+    public String supprimerMateriel(@PathVariable("id") int id, ModelMap model){
+        materielService.delete(materielService.findById(id));
+        return "redirect:/rest/admin/materiels/";
+    }
+
+    // Etudiants
+    @RequestMapping(value = "/etudiants/", method = RequestMethod.GET)
+    public String listerEtudiant(ModelMap model){
+        List<Utilisateur> etudiants = utilisateurSevice.listeEtudiants();
+        model.addAttribute("title", "Etudiants");
+        model.addAttribute("etudiants", etudiants);
+        model.addAttribute("subtitle", "Liste des etudiants.");
+        return "accueil/etudiants";
+    }
+
+    @RequestMapping(value = "/etudiants/", method = RequestMethod.POST)
+    public String ajouterEtudiant(@ModelAttribute("utilsateurForm") Utilisateur utilisateur, ModelMap model){
+        utilisateur.setId(2);
+        Utilisateur u = utilisateurSevice.save(utilisateur);
+        String error = "";
+        if(u == null){
+            error = "Une erreur est survenue lors de l'insertion.";
+        }
+        model.addAttribute("error", error);
+        return "redirect:/rest/admin/etudiants/";
+    }
+
+    @RequestMapping(value = "/etudiants/delete/{id}", method = RequestMethod.GET)
+    public String supprimerEtudiant(@PathVariable("id") int id, ModelMap model){
+        utilisateurSevice.delete(utilisateurSevice.findById(id));
+        return "redirect:/rest/admin/etudiants/";
+    }
+
 
     public enum Etat{
         RENDU("rendu"),

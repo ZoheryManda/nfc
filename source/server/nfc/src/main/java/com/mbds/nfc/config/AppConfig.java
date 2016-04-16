@@ -21,6 +21,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -116,8 +117,21 @@ public class AppConfig {
         return mailSenderImpl;
     }
 
+    /**
+     * Notification GCM
+     * @return
+     */
     @Bean(name = "gcmSender")
     public Sender gcmSender() {
         return new UTF8Sender(env.getProperty("gcmserverkey"));
+    }
+
+    /**
+     * Bean validating support
+     * @return
+     */
+    @Bean(name = "validator")
+    public LocalValidatorFactoryBean validator(){
+        return new LocalValidatorFactoryBean();
     }
 }
