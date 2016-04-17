@@ -23,9 +23,6 @@ public class HomeController {
     private static final Logger LOG = LoggerFactory.getLogger(HomeController.class);
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
     private MouvementService mouvementService;
 
     @Autowired
@@ -43,7 +40,6 @@ public class HomeController {
     @RequestMapping(value = "/home/", method = RequestMethod.GET)
     public String index(ModelMap model) {
         model.addAttribute("greeting", "Hello World from Spring 4 MVC");
-        model.addAttribute("user", userService.findUserById(1).getFirstName());
         return "welcome";
     }
 
